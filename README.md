@@ -55,5 +55,5 @@ Se probó la **API del formulario de contacto** y se validó el correcto almacen
 
 ## 👩‍💻 Autora
 **Lucia Alcaraz – QA Junior**  
-[🔗 LinkedIn](https://www.linkedin.com/in/luc%C3%ADa-a-52b455239/)
+[🔗 LinkedIn](www.linkedin.com/in/lucía-a-52b455239)
 
