@@ -33,12 +33,12 @@ Este portafolio web muestra mis proyectos de **QA**. Incluye un **formulario de 
 ## 🗄 Base de Datos
 Se ha creado una base de datos en Supabase para almacenar los datos enviados desde el formulario de contacto.  
 - La carpeta `sql` incluye todas las **consultas SQL de prueba**, que permiten generar, consultar, editar o eliminar datos de prueba según sea necesario.  
-- Proyecto Supabase (requiere acceso): [Supabase Project](https://supabase.com/dashboard/project/vtizuqohukyyxvcshmbs)  
+- Proyecto Supabase (requiere acceso): [Supabase Project](https://supabase.com/dashboard/project/mufsgvuyudspmhkyuczl) 
 
 ## 🗄 API de Formulario
 Se ha generado una API que permite agregar, editar, consultar y eliminar datos de la base de datos creada en supabase.
-- URL API (requiere acceso): [Supabase API](https://vtizuqohukyyxvcshmbs.supabase.co)  
-- Documentación de la API: [Documentación API](./apidoc.pdf) 
+- URL API (requiere acceso): [Supabase API](https://mufsgvuyudspmhkyuczl.supabase.co/rest/v1/form)  
+- Documentación de la API: [Documentación API](https://luciaalcarazqa.github.io/portafolio-QA/apidoc.html) 
 ---
 
 ## ⚙️ QA Testing
@@ -46,7 +46,7 @@ Se ha generado una API que permite agregar, editar, consultar y eliminar datos d
 Se realizaron pruebas exploratorias en navegadores web y móviles para asegurar el correcto funcionamiento de la interfaz y la interacción con el usuario.
 
 ### Pruebas de API
-- Colección en POSTMAN (requiere acceso): [POSTMAN Collection](https://www.postman.com/bootcampqatesting/api-usuarios/collection/x5mwyvf/api-de-usuarios) 
+- Colección en POSTMAN (requiere acceso): [POSTMAN Collection](https://luciaalcarazqa-1211171.postman.co/workspace/form~4ffa7c67-a24e-4f44-9fa5-48bfb8614b81/collection/53571957-f55788ff-b737-4692-9fa0-6b2f40dd6e34?action=share&source=copy-link&creator=53571957) 
 Se probó la **API del formulario de contacto** y se validó el correcto almacenamiento de los datos en la base de datos. 
 - Se probaron las operaciones **GET, POST, PATCH y DELETE**, verificando respuestas correctas y manejo de errores.  
 - Se implementó un **flujo de integración continua** con GitHub Actions, ejecutando automáticamente las pruebas de API mediante Newman cada semana. 
@@ -55,5 +55,4 @@ Se probó la **API del formulario de contacto** y se validó el correcto almacen
 
 ## 👩‍💻 Autora
 **Lucia Alcaraz – QA Junior**  
-[🔗 LinkedIn](www.linkedin.com/in/lucía-a-52b455239)
-
+[🔗 LinkedIn](https://www.linkedin.com/in/lucía-a-52b455239)
