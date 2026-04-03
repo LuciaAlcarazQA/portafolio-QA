@@ -1,26 +1,38 @@
---Consultar todos los datos de la tabla form
-SELECT *FROM Form;
---Ver todos los usuarios que su subject es job
-SELECT * FROM Form WHERE subject = 'job'
---Ver todos los susuarios con edad 20, que es de tipo numero
-SELECT * FROM Form WHERE age = 20;
---Ver todos los usuarios su nombre es ana
-SELECT * FROM Form WHERE name = 'ana';
---Ver todos los usuarios donde el nombre no sea ana
-SELECT * FROM Form WHERE name != 'ana';
---Ver todos los usuarios mayores de 30
-SELECT * FROM Form WHERE age > 30;
---Ver todos los usuarios con edad igual o menor que 28
-SELECT * FROM Form WHERE age <=28;
---Ver todos los usuarios que usan gmail en su cuenta de email
-SELECT * FROM Form WHERE email LIKE '%gmail.com';
-Ver todos los usuarios que su subject sea infomation o other
-SELECT * FROM Form WHERE subject IN ('information' , 'other');
---Ver todos los usuarios que tengan entre 25 y 28 de edad
-SELECT * FROM Form WHERE age BETWEEN 25 AND 28;
---Ver todos los usuarios que no tengan el nombre vacio
-SELECT * FROM Form where name IS NOT NULL;
---Ver todos los usuarios ordenados por edad de manera ascendente
-SELECT * FROM Form ORDER BY age ASC;
---Ver todos los usuarios ordenados por nombre de LA Z a la A
-SELECT * FROM Form ORDER BY name DESC;
+-- Consultar todos los datos
+SELECT * FROM form;
+
+-- Filtrar por nombre 'ana'
+SELECT * FROM form
+WHERE name = 'ana';
+
+-- Filtrar por nombre vacío
+SELECT * FROM form
+WHERE name IS NULL;
+
+-- Filtrar por nombre que empiece por 'a'
+SELECT * FROM form
+WHERE name LIKE 'a%';
+
+-- Filtrar por edad entre 20 y 30
+SELECT * FROM form
+WHERE age BETWEEN 20 AND 30;
+
+-- Filtrar por asunto 'job' e 'information'
+SELECT * FROM form
+WHERE subject IN ('job', 'information');
+
+-- Filtrar por nombre 'maria' o 'ana'
+SELECT * FROM form
+WHERE name IN ('maria', 'ana');
+
+-- Filtrar por email que contenga gmail y asunto 'job'
+SELECT * FROM form
+WHERE email LIKE '%gmail%' AND subject = 'job';
+
+-- Filtrar por edad mayor a 30 y mensaje que contenga 'test'
+SELECT * FROM form
+WHERE age > 30 AND message LIKE '%test%';
+
+-- Mostrar los datos ordenados por email de la A a la Z
+SELECT * FROM form
+ORDER BY email ASC;
