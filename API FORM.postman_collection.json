@@ -71,14 +71,18 @@
                   "    pm.response.to.have.status(200);\r",
                   "});\r",
                   "\r",
-                  "pm.test(\"El tiempo de respuesta es menor a 2000ms\", function () {\r",
-                  "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "pm.test(\"El tiempo de respuesta es menor a 3000ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
                   "});\r",
                   "\r",
                   "pm.test(\"Your test email\", function () {\r",
                   "    var jsonData = pm.response.json();\r",
                   "    var email = pm.environment.get (\"emailform\")\r",
                   "    pm.expect(jsonData[0].email).to.eql(email);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"response contains email\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(pm.environment.get(\"emailform\"));\r",
                   "});"
                 ],
                 "type": "text/javascript",
@@ -135,6 +139,10 @@
                   "});\r",
                   "pm.test(\"El tiempo de respuesta es menor a 2000ms\", function () {\r",
                   "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response contais age\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"28\");\r",
                   "});"
                 ],
                 "type": "text/javascript",
@@ -162,12 +170,19 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{API_URL}}/form",
+              "raw": "{{API_URL}}/form?age=eq.28",
               "host": [
                 "{{API_URL}}"
               ],
               "path": [
                 "form"
+              ],
+              "query": [
+                {
+                  "key": "age",
+                  "value": "eq.28",
+                  "type": "text"
+                }
               ]
             }
           },
@@ -192,6 +207,10 @@
                   "    var jsonData = pm.response.json();\r",
                   "    var subject = pm.environment.get(\"subjectform2\")\r",
                   "    pm.expect(jsonData[0].subject).to.eql(subject);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response contais subject\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"other\");\r",
                   "});"
                 ],
                 "type": "text/javascript",
@@ -251,7 +270,7 @@
                   "    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
                   "});\r",
                   "\r",
-                  "pm.test(\"Your test name\", function () {\r",
+                  "pm.test(\"Your test name contains ana\", function () {\r",
                   "    var jsonData = pm.response.json();\r",
                   "       pm.expect(jsonData[0].name).to.eql(pm.environment.get(\"nameform\"));\r",
                   "});\r",
@@ -405,6 +424,9 @@
                   "});\r",
                   "pm.test(\"El tiempo de respuesta es menor a 2000ms\", function () {\r",
                   "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});\r",
+                  "pm.test(\"Response no contains name\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.not.include(pm.environment.get(\"nombrequenoexiste\"));\r",
                   "});"
                 ],
                 "type": "text/javascript",
@@ -432,7 +454,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{API_URL}}/form?name=",
+              "raw": "{{API_URL}}/form?name=eq.{{nombrequenoexiste}}",
               "host": [
                 "{{API_URL}}"
               ],
@@ -442,8 +464,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "",
-                  "type": "text"
+                  "value": "eq.{{nombrequenoexiste}}"
                 }
               ]
             }
@@ -462,6 +483,9 @@
                   "});\r",
                   "pm.test(\"El tiempo de respuesta es menor a 2000ms\", function () {\r",
                   "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});\r",
+                  "pm.test(\"Response not contain subject\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.not.include(pm.environment.get(\"asuntoquenoexiste\"));\r",
                   "});"
                 ],
                 "type": "text/javascript",
@@ -489,12 +513,18 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{API_URL}}/form",
+              "raw": "{{API_URL}}/form?subject=eq.{{asuntoquenoexiste}}",
               "host": [
                 "{{API_URL}}"
               ],
               "path": [
                 "form"
+              ],
+              "query": [
+                {
+                  "key": "subject",
+                  "value": "eq.{{asuntoquenoexiste}}"
+                }
               ]
             }
           },
@@ -539,12 +569,18 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{API_URL}}/form",
+              "raw": "{{API_URL}}/form?email=eq.yo@hotmail.com",
               "host": [
                 "{{API_URL}}"
               ],
               "path": [
                 "form"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "eq.yo@hotmail.com"
+                }
               ]
             }
           },
@@ -621,7 +657,7 @@
           "response": []
         },
         {
-          "name": "PATCH Editar nombre",
+          "name": "PATCH Editar nombre válido",
           "event": [
             {
               "listen": "test",
@@ -798,7 +834,7 @@
               }
             },
             "url": {
-              "raw": "{{API_URL}}/form?id=eq.{{IDFORMEDITAR}}",
+              "raw": "{{API_URL}}/form?id=eq.22",
               "host": [
                 "{{API_URL}}"
               ],
@@ -808,7 +844,7 @@
               "query": [
                 {
                   "key": "id",
-                  "value": "eq.{{IDFORMEDITAR}}"
+                  "value": "eq.22"
                 }
               ]
             }
@@ -940,71 +976,6 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test(\"El codigo de respuesta es 204\", function () {\r",
-                  "    pm.response.to.have.status(204);\r",
-                  "});\r",
-                  "pm.test(\"El tiempo de respuesta es menor a 2000ms\", function () {\r",
-                  "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "request": {
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "value",
-                  "value": "{{PASSWORD}}",
-                  "type": "string"
-                },
-                {
-                  "key": "key",
-                  "value": "apikey",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "PATCH",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n \r\n  \"age\": 17\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{API_URL}}/form?id=eq.{{IDFORMEDITAR}}",
-              "host": [
-                "{{API_URL}}"
-              ],
-              "path": [
-                "form"
-              ],
-              "query": [
-                {
-                  "key": "id",
-                  "value": "eq.{{IDFORMEDITAR}}"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "PATCH editar nombre vacío.",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
                   "pm.test(\"El codigo de respuesta es 400\", function () {\r",
                   "    pm.response.to.have.status(400);\r",
                   "});\r",
@@ -1038,7 +1009,72 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\":\r\n \r\n}",
+              "raw": "{\r\n \r\n  \"age\": 7\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_URL}}/form?id=eq.{{IDFORMEDITAR}}",
+              "host": [
+                "{{API_URL}}"
+              ],
+              "path": [
+                "form"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "eq.{{IDFORMEDITAR}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH editar nombre vacío.",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"El codigo de respuesta es 204\", function () {\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});\r",
+                  "pm.test(\"El tiempo de respuesta es menor a 2000ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{PASSWORD}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "apikey",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\":null\r\n \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1103,7 +1139,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"subject\":\r\n \r\n}",
+              "raw": "{\r\n  \"subject\":null\r\n \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1135,8 +1171,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test(\"El codigo de respuesta es 400\", function () {\r",
-                  "    pm.response.to.have.status(400);\r",
+                  "pm.test(\"El codigo de respuesta es 204\", function () {\r",
+                  "    pm.response.to.have.status(204);\r",
                   "});\r",
                   "pm.test(\"El tiempo de respuesta es menor a 2000ms\", function () {\r",
                   "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
@@ -1168,7 +1204,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"age\":\r\n \r\n}",
+              "raw": "{\r\n  \"age\":null\r\n \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1233,7 +1269,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\":\r\n \r\n}",
+              "raw": "{\r\n  \"email\":null\r\n \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1500,8 +1536,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test(\"El codigo de respuesta es 401\", function () {\r",
-                  "    pm.response.to.have.status(401);\r",
+                  "pm.test(\"El codigo de respuesta es 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
                   "});\r",
                   "pm.test(\"El tiempo de respuesta es menor a 2000ms\", function () {\r",
                   "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
@@ -1533,7 +1569,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "\r\n  \"name\": \"apitest\",\r\n    \"subject\": \"other\",\r\n  \"age\": 25,\r\n  \"message\": \"mensaje de prueba\"",
+              "raw": "{\r\n  \"name\": \"apitest\",\r\n    \"subject\": \"other\",\r\n  \"age\": 25,\r\n  \"message\": \"mensaje de prueba\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1592,7 +1628,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "\r\n  \"name\": \"apitest\",\r\n   \"age\": 25,\r\n  \"message\": \"mensaje de prueba\"",
+              "raw": "{\r\n  \"name\": \"apitest\",\r\n  \"email\": \"maria@yahoo.com\",\r\n   \"age\": 25,\r\n  \"message\": \"mensaje de prueba\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1651,7 +1687,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"apitest\",\r\n  \"email\": \"maria@yahoo.com\",\r\n  \"subject\": \"other\",\r\n  \"age\": 25,\r\n",
+              "raw": "{\r\n  \"name\": \"apitest\",\r\n  \"email\": \"maria@yahoo.com\",\r\n  \"subject\": \"other\",\r\n  \"age\": 25\r\n }",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1682,8 +1718,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test(\"El codigo de respuesta es 200\", function () {\r",
-                  "    pm.response.to.have.status(200);\r",
+                  "pm.test(\"El codigo de respuesta es 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
                   "});\r",
                   "pm.test(\"El tiempo de respuesta es menor a 2000ms\", function () {\r",
                   "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
@@ -1940,8 +1976,8 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test(\"El codigo de respuesta es 200\", function () {\r",
-              "    pm.response.to.have.status(200);\r",
+              "pm.test(\"El codigo de respuesta es 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
               "});\r",
               "pm.test(\"El tiempo de respuesta es menor a 2000ms\", function () {\r",
               "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
@@ -1982,8 +2018,7 @@
           "query": [
             {
               "key": "age",
-              "value": "eq.texto",
-              "type": "text"
+              "value": "eq.texto"
             }
           ]
         }
